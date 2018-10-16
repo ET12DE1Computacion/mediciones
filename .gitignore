@@ -331,3 +331,9 @@ ASALocalRun/
 
 # Archivos de respaldo de Workbench
 *.mwb.bak
+
+# Archivo de respaldo del Enterprise
+Diagramas.ldb
+
+# Configuraciones de editor VSCode
+.vscode/
