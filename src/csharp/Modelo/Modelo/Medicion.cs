@@ -34,7 +34,7 @@ namespace Modelo
         public override string ToString()
         {
             return string.Format("ID: {0}\tNombre: {1}\tValor:{2}\tFecha: {3} {4}",
-                Id, TipoMedicion.Nombre, Valor, FechaHora.ToShortDateString(), FechaHora.ToShortTimeString());
+                Id, TipoMedicion.Nombre, Valor, FechaHora.ToShortDateString(), FechaHora.ToLongTimeString());
         }
     }
 }
