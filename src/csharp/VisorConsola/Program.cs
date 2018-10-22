@@ -27,7 +27,7 @@ namespace VisorConsola
             };
 
             Logica logica = new Logica();
-            tiposMediciones.ForEach(tm => logica.agregarTipoMedicion(tm));
+            logica.agregarTipoMedicion(tiposMediciones);
             logica.Visor = visor;
             logica.Formateador = formateador;
             logica.Placa = placa;
