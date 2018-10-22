@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DAO
 {
-    interface IDAO
+    public interface IDAO
     {
         void guardarMediciones(List<Medicion> mediciones);
         void guardarTipoMedicion(TipoMedicion tipoMedicion);

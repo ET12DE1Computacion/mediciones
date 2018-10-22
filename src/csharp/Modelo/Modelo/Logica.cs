@@ -9,6 +9,12 @@ namespace Modelo
     {
         IDisplay visor;
         IDAO dao;
+
+        public IDAO Dao
+        {
+            get { return dao; }
+            set { dao = value; }
+        }
         public Formateador Formateador { get; set; }
         public Dictionary<string,TipoMedicion> TiposMediciones { get; set; }
         private PlacaSensora placa;
@@ -24,6 +30,7 @@ namespace Modelo
 
         public Logica(IDAO dao)
         {
+            this.Dao = dao;
             this.agregarTipoMedicion(dao.traerTipoMediciones());
         }
         /// <summary>
@@ -42,7 +49,7 @@ namespace Modelo
             else
             {
                 tipoMedicion = new TipoMedicion(nombre);
-                dao.guardarTipoMedicion(tipoMedicion);
+                //TODO implementar esto dao.guardarTipoMedicion(tipoMedicion);
                 this.agregarTipoMedicion(tipoMedicion);            
             }
             return tipoMedicion;           
@@ -53,7 +60,7 @@ namespace Modelo
             try
             {
                 List<Medicion> mediciones = Formateador.obtenerMedicionesDesde(medicionesBoxeadas, this);
-                dao.guardarMediciones(mediciones);
+                //TODO implementar esto dao.guardarMediciones(mediciones);
                 visor.imprimirMediciones(mediciones);
             }
             catch (ExcepcionLectura e)
