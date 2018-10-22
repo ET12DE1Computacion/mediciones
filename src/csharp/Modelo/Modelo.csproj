@@ -57,6 +57,7 @@
     <Compile Include="Modelo\Medicion.cs" />
     <Compile Include="Placa\ExcepcionLectura.cs" />
     <Compile Include="Placa\PlacaSensora.cs" />
+    <Compile Include="Placa\PlacaSimulada.cs" />
     <Compile Include="Placa\Serial.cs" />
     <Compile Include="Modelo\TipoMedicion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

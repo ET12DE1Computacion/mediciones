@@ -15,9 +15,13 @@ namespace VisorConsola
         {
             VisorConsola visor = new VisorConsola();
 
-            Modelo.PlacaSensora placa = new Serial(9600, "COM5");
+            PlacaSensora placa = new Serial(9600, "COM5");
             placa.NombrePlaca = "Arduino Uno - DHT11";
 
+            PlacaSensora placa2 = new PlacaSimulada{
+                NombrePlaca = "Simulada",
+                Delay = 2500
+            };
             FormateadorJson formateador = new FormateadorJson();
 
             List<TipoMedicion> tiposMediciones = new List<TipoMedicion>{
@@ -30,7 +34,7 @@ namespace VisorConsola
             logica.agregarTipoMedicion(tiposMediciones);
             logica.Visor = visor;
             logica.Formateador = formateador;
-            logica.Placa = placa;
+            logica.Placa = placa2;
             while (true) ;
         }
     }
