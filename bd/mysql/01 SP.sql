@@ -26,7 +26,7 @@ begin
 end $$
 
  
-create procedure altaMedicion(in unIdTipoMedicion tinyint, in unValor float, in unaFechaHora datetime, out idGenerado tinyint unsigned)
+create procedure altaMedicion(in unIdTipoMedicion tinyint, in unValor float, in unaFechaHora datetime, out idGenerado int unsigned)
 begin
 	insert into medicion(idTipoMedicion, valor, fechaHora)
     values			 (unidTipoMedicion, unValor, unaFechaHora);

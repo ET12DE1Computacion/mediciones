@@ -49,7 +49,7 @@ namespace Modelo
             else
             {
                 tipoMedicion = new TipoMedicion(nombre);
-                //TODO implementar esto dao.guardarTipoMedicion(tipoMedicion);
+                dao.guardarTipoMedicion(tipoMedicion);
                 this.agregarTipoMedicion(tipoMedicion);            
             }
             return tipoMedicion;           
@@ -60,7 +60,7 @@ namespace Modelo
             try
             {
                 List<Medicion> mediciones = Formateador.obtenerMedicionesDesde(medicionesBoxeadas, this);
-                //TODO implementar esto dao.guardarMediciones(mediciones);
+                dao.guardarMediciones(mediciones);
                 visor.imprimirMediciones(mediciones);
             }
             catch (ExcepcionLectura e)
