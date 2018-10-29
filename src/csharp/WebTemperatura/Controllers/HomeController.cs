@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebTemperatura.Models;
 
 namespace WebTemperatura.Controllers
 {
@@ -13,18 +14,13 @@ namespace WebTemperatura.Controllers
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+        [HttpGet]
+        public JsonResult ReturnLast(){
+            medicionesEntities context = new medicionesEntities();
+            medicion m = new medicion();
+                context.medicion.Where(x => x.fechaHora > DateTime.Now).OrderBy(x => x.fechaHora).First();         
 
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return null;
         }
     }
 }
