@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Modelo.Placa;
 using Modelo.Formateadores;
 using Modelo;
+using DAO;
 
 namespace VisorConsola
 {
@@ -30,7 +31,10 @@ namespace VisorConsola
                 new TipoMedicion("sensacionTermica")
             };
 
+            DAOMySQL dao = new DAOMySQL("server=localhost;database=mediciones;uid=mediciones;pwd=mediciones;");
+
             Logica logica = new Logica();
+            logica.Dao = dao;
             logica.agregarTipoMedicion(tiposMediciones);
             logica.Visor = visor;
             logica.Formateador = formateador;
