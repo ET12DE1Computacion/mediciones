@@ -5,7 +5,7 @@ begin
 	declare mn float default 0;
 	declare pr float default 0;
 
-	select max(valor) into mx, min(valor) into mn,average(valor) into pr
+	select max(valor), min(valor), avg(valor) into mx, mn, pr
 	from Informe i,tipoMedicion tm,Medicion M
 	where m.idTipoMedicion = tm.idTipoMedicion
 	and tm.idTipoMedicion = m.idTipoMedicion
@@ -26,7 +26,7 @@ begin
 end $$
 
  
-create procedure altaMedicion(in unIdTipoMedicion tinyint, in unValor float, in unaFechaHora datetime, out idGenerado int unsigned)
+create procedure altaMedicion(in unIdTipoMedicion tinyint unsigned, in unValor float, in unaFechaHora datetime, out idGenerado int unsigned)
 begin
 	insert into medicion(idTipoMedicion, valor, fechaHora)
     values			 (unidTipoMedicion, unValor, unaFechaHora);

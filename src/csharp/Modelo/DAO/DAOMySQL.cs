@@ -24,14 +24,17 @@ namespace DAO
         public void guardarTipoMedicion(TipoMedicion tipoMedicion)
         {
             instanciarComando("guardarTipoMedicion");
-
-            cargarParametro("unTipoMedicion", MySqlDbType.VarChar, tipoMedicion.Nombre);
+            cargarParametro("unTipoMedicion", MySqlDbType.VarChar, 45, tipoMedicion.Nombre);
             cargarParametro("idGenerado", MySqlDbType.UByte, DBNull.Value);
             setearComoSalida("idGenerado");
             ejecutarComando();
             tipoMedicion.Id = Convert.ToByte(comando.Parameters["idGenerado"].Value);
-
         }
+        private void cargarParametro(string nombre, MySqlDbType tipoDb, int longitud, object valor)
+        {
+            cargarParametro(nombre, tipoDb, valor);
+            comando.Parameters[nombre].Size = longitud;
+        }    
         public List<TipoMedicion> traerTipoMediciones()
         {
             throw new NotImplementedException();
@@ -39,9 +42,9 @@ namespace DAO
 
         private void guardarMediciones(Medicion medicion)
         {
-            instanciarComando("guardarMediciones");
+            instanciarComando("altamedicion");
 
-            cargarParametro("unTipoMedicion", MySqlDbType.Byte, medicion.TipoMedicion);
+            cargarParametro("unIdTipoMedicion", MySqlDbType.Byte, medicion.TipoMedicion.Id);
             cargarParametro("unValor", MySqlDbType.Float, medicion.Valor);
             cargarParametro("unaFechaHora", MySqlDbType.DateTime, medicion.FechaHora);
             cargarParametro("idGenerado", MySqlDbType.UInt32, DBNull.Value);

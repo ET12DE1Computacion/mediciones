@@ -71,5 +71,5 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-CREATE USER `mediciones`@`localhost` IDENTIFIED BY `mediciones`;
+CREATE USER IF NOT EXISTS `mediciones`@`localhost` IDENTIFIED BY 'mediciones';
 GRANT ALL ON mediciones.* to `mediciones`@`localhost`;
