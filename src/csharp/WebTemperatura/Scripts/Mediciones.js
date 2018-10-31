@@ -151,8 +151,19 @@ function VerGrafico() {
                     ticks: {
                         beginAtZero: true
                     },
-                    display: true,
-                    labelString: 'dasdas'
+                    scaleLabel: {
+                        display: true,
+                        labelString: '°C'
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Hora'
+                    }
                 }]
             }
         }
