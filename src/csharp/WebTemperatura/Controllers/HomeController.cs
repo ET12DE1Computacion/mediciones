@@ -12,15 +12,6 @@ namespace WebTemperatura.Controllers
         public ActionResult Index()
         {
             return View();
-        }
-
-        [HttpGet]
-        public JsonResult ReturnLast(){
-            medicionesEntities context = new medicionesEntities();
-            medicion m = new medicion();
-                context.medicion.Where(x => x.fechaHora > DateTime.Now).OrderBy(x => x.fechaHora).First();         
-
-            return null;
-        }
+        }       
     }
 }
