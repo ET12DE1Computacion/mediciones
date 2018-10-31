@@ -85,14 +85,14 @@ function VerTabla() {
 
 function CargarTabla() {
     var request = $.ajax({
-        url: baseURL + "Medicion/GetUltimaMedicion",
+        url: baseURL + "Medicion/GetUltimaMedicionTabla",
         type: 'GET',
         contentType: 'application/json; charset=utf-8'
     });
 
 
     request.done(function (data) {
-        console.log(data.Response);
+        //console.log(data.Response);
         //grdMediciones.clear();
         grdMediciones.row.add(data.Response);
         grdMediciones.draw();
@@ -113,7 +113,7 @@ function VerGrafico() {
     $('#contenido').empty();
     clearTimeout(tablaTimeOut);
 
-    $('#contenido').attr('style', 'height: 370px; max-width: 920px; margin: 0px auto;');
+    $('#contenido').attr('style', 'height: 400px; max-width: 1100px; margin: 0px auto;');
 
     $('#contenido').append('<canvas id="myChart" width="1000" height="300"></canvas>');
 
@@ -124,7 +124,7 @@ function VerGrafico() {
         data: {
             labels: ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0"],
             datasets: [{
-                label: 'N° de Medición',
+                label: 'Temperatura',
                 data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -142,7 +142,7 @@ function VerGrafico() {
                     'rgba(153, 102, 255, 1)',
                     'rgba(255, 159, 64, 1)'
                 ],
-                borderWidth: 1
+                borderWidth: 2
             }]
         },
         options: {
@@ -176,7 +176,7 @@ function cargarPuntos() {
         myChart.data.labels.shift();
         myChart.data.datasets[0].data.shift();
         var value = new Date(parseInt(data.Response.fechaHora.replace(/(^.*\()|([+-].*$)/g, '')));
-        myChart.data.labels.push(value.toLocaleTimeString());
+        myChart.data.labels.push(value.toLocaleTimeString() + ' Hs');
         myChart.data.datasets[0].data.push(data.Response.valor);
         myChart.update();
         puntosTimeOut = setTimeout(cargarPuntos, 1000);

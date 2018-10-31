@@ -160,3 +160,6 @@ canvas{
   overflow-x: hidden;
 }
 
+body td {
+    font-size: 12px;
+}
