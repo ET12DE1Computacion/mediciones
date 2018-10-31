@@ -18,7 +18,7 @@ begin
 	select last_insert_id() into idGenerado;
 end $$
 
-create procedure AltaTipoMedicion(in unTipoMedicion varchar (45), out idGenerado tinyint unsigned)
+create procedure altaTipoMedicion(in unTipoMedicion varchar (45), out idGenerado tinyint unsigned)
 begin
 	insert into TipoMedicion(TipoMedicion)
 					values	(unTipoMedicion);

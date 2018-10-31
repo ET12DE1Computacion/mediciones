@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AGBD</name>
+    </assembly>
+    <members>
+        <member name="T:ET12.AGBD.Utiles">
+            <summary>
+            Clase con metodos utiles para la materia Administracion y Gestion de Base de Datos
+            </summary>
+        </member>
+        <member name="M:ET12.AGBD.Utiles.tablaALista``1(System.Data.DataTable,ET12.AGBD.Utiles.filaA{``0})">
+            <summary>
+            Metodo estatico que pasa un DataTable a una Lista de
+            Objetos mediante un mapeo con un metodo como parametro
+            </summary>
+            <typeparam name="T">Tipo de la coleccion destino</typeparam>
+            <param name="tabla">Tabla</param>
+            <param name="metodoFilaAObjeto">Metodo que mapea un DataRow a un objeto del Tipo destino</param>
+            <returns>Una lista con los elementos mapeados</returns>
+        </member>
+    </members>
+</doc>

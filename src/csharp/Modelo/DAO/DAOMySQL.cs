@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using Modelo;
 using System.Data;
+using ET12.AGBD;
 
 namespace DAO
 {
@@ -23,7 +24,7 @@ namespace DAO
 
         public void guardarTipoMedicion(TipoMedicion tipoMedicion)
         {
-            instanciarComando("guardarTipoMedicion");
+            instanciarComando("altatipomedicion");
             cargarParametro("unTipoMedicion", MySqlDbType.VarChar, 45, tipoMedicion.Nombre);
             cargarParametro("idGenerado", MySqlDbType.UByte, DBNull.Value);
             setearComoSalida("idGenerado");
@@ -37,7 +38,27 @@ namespace DAO
         }    
         public List<TipoMedicion> traerTipoMediciones()
         {
-            throw new NotImplementedException();
+            string query = "SELECT idTipoMedicion, tipoMedicion FROM TipoMedicion";
+            DataTable tabla = traerTablaDeQuery(query);
+            return Utiles.tablaALista(tabla, filaATipoMedicion);
+        }
+
+        private DataTable traerTablaDeQuery(string query)
+        {
+            DataTable tabla = new DataTable();
+            adaptador = new MySqlDataAdapter(query, conexion);
+            adaptador.Fill(tabla);
+            return tabla;
+        }
+
+        private TipoMedicion filaATipoMedicion(DataRow fila)
+        {
+            TipoMedicion tipo = new TipoMedicion()
+            {
+                Nombre = fila["tipoMedicion"].ToString(),
+                Id = Convert.ToByte(fila["idTipoMedicion"])
+            };
+            return tipo;
         }
 
         private void guardarMediciones(Medicion medicion)

@@ -25,20 +25,12 @@ namespace VisorConsola
             };
             FormateadorJson formateador = new FormateadorJson();
 
-            List<TipoMedicion> tiposMediciones = new List<TipoMedicion>{
-                new TipoMedicion("humedad"),
-                new TipoMedicion("temperatura"),
-                new TipoMedicion("sensacionTermica")
-            };
-
             DAOMySQL dao = new DAOMySQL("server=localhost;database=mediciones;uid=mediciones;pwd=mediciones;");
 
-            Logica logica = new Logica();
-            logica.Dao = dao;
-            logica.agregarTipoMedicion(tiposMediciones);
+            Logica logica = new Logica(dao);
             logica.Visor = visor;
             logica.Formateador = formateador;
-            logica.Placa = placa2;
+            logica.Placa = placa;
             while (true) ;
         }
     }

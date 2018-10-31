@@ -30,6 +30,7 @@ namespace Modelo
 
         public Logica(IDAO dao)
         {
+            this.TiposMediciones = new Dictionary<string, TipoMedicion>();
             this.Dao = dao;
             this.agregarTipoMedicion(dao.traerTipoMediciones());
         }
