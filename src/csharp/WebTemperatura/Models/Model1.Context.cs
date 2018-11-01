@@ -13,10 +13,10 @@ namespace WebTemperatura.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class medicionesEntities : DbContext
+    public partial class medicionesEntities1 : DbContext
     {
-        public medicionesEntities()
-            : base("name=medicionesEntities")
+        public medicionesEntities1()
+            : base("name=medicionesEntities1")
         {
         }
     

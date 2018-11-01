@@ -28,7 +28,7 @@ namespace WebTemperatura.Controllers
         [HttpGet]
         public JsonResult GetUltimaMedicion()
         {
-            medicionesEntities context = new medicionesEntities();
+            medicionesEntities1 context = new medicionesEntities1();
             context.Configuration.ProxyCreationEnabled = false;
             var med = context.medicion.Where(x => x.fechaHora > DateTime.Now && x.idTipoMedicion == 1).OrderBy(x => x.fechaHora).First();
             return Json(new { Response = med }, JsonRequestBehavior.AllowGet);
@@ -37,10 +37,37 @@ namespace WebTemperatura.Controllers
         [HttpGet]
         public JsonResult GetUltimaMedicionTabla()
         {
-            medicionesEntities context = new medicionesEntities();
+            medicionesEntities1 context = new medicionesEntities1();
             context.Configuration.ProxyCreationEnabled = false;
-            var med = context.medicion.Where(x => x.fechaHora > DateTime.Now).OrderBy(x => x.fechaHora).First();
+            var med = context.medicion.Where(x => x.fechaHora > DateTime.Now && x.idTipoMedicion == 1).OrderBy(x => x.fechaHora).First();
             return Json(new { Response = med }, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public JsonResult GetUltimaMedicionTablaST()
+        {
+            medicionesEntities1 context = new medicionesEntities1();
+            context.Configuration.ProxyCreationEnabled = false;
+            var med = context.medicion.Where(x => x.fechaHora > DateTime.Now && x.idTipoMedicion == 2).OrderBy(x => x.fechaHora).First();
+            return Json(new { Response = med }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetUltimaMedicionTablaH()
+        {
+            medicionesEntities1 context = new medicionesEntities1();
+            context.Configuration.ProxyCreationEnabled = false;
+            var med = context.medicion.Where(x => x.fechaHora > DateTime.Now && x.idTipoMedicion == 3).OrderBy(x => x.fechaHora).First();
+            return Json(new { Response = med }, JsonRequestBehavior.AllowGet);
+        }
+
+        //[HttpGet]
+        //public JsonResult Test()
+        //{
+        //    medicionesEntities1 context = new medicionesEntities1();
+        //    context.Configuration.ProxyCreationEnabled = false;
+        //    var med = context.medicion.ToList();
+        //    return Json(new { Response = "" }, JsonRequestBehavior.AllowGet);
+        //}
     }
 }

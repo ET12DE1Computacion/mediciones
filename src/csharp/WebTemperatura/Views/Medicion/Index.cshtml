@@ -1,24 +1,26 @@
 ﻿<br />
 <br />
-<div class="row">
-    <div class="col-2">
-        <a class="btn btn-outline-primary btn-block" onclick="VerGrafico();">Gráfico</a>
-    </div>
-    <div class="col-2">
-        <a class="btn btn-outline-primary btn-block" onclick="VerTabla();">Tabla</a>
-    </div>
-</div>
-
-<hr />
-
-<div class="card">
+<br />
+<br />
+<div class="card text-center">
     <div class="card-header">
-        Mediciones
+        <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+                <a id="pnlGrafico" class="nav-link active" href="#" onclick="VerGrafico()" ;>Gráfico</a>
+            </li>
+            <li class="nav-item">
+                <a id="pnlTabla" class="nav-link" href="#" onclick="VerTabla();">Tabla</a>
+            </li>
+        </ul>
     </div>
     <div class="card-body">
-        <div id="contenido"></div>
+        <div id="contenido" class="panelMediciones"></div>
     </div>
 </div>
-
-
+<br />
+<br />
+<br />
+<div class="offset-4 col-4">
+    <a type="button" href="~/Home" class="btn btn-outline-dark btn-lg btn-block">Volver</a>
+</div>
 <script src="~/Scripts/Mediciones.js"></script>

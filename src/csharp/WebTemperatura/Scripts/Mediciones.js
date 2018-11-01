@@ -1,4 +1,4 @@
-﻿var baseURL = window.location.protocol + "//" + window.location.host + "/";
+﻿var baseURL = window.location.protocol + "//" + window.location.host + "/" + location.pathname.split('/')[1] + "/";
 var grdMediciones;
 var chartMediciones;
 var DELAY = 1000;
@@ -6,15 +6,19 @@ var myChart;
 var puntosTimeOut, tablaTimeOut;
 
 $(document).ready(function () {
-
+    VerGrafico();
+    //console.log(baseURL);
 });
 
 function VerTabla() {
-        
+
+    $('#pnlGrafico').removeClass('active');
+    $('#pnlTabla').addClass('active');
     $('#contenido').empty();
     clearTimeout(puntosTimeOut);
+    clearTimeout(tablaTimeOut);
 
-    $('#contenido').append('<table id="grdMediciones" class="table table-bordered table-hover table-striped"> <thead> <tr> <th>Nro. Medición</th> <th>Valor</th> <th>Hora</th> <th>Tipo</th> </tr> </thead><tfoot> <tr> <th>Nro. Medición</th> <th>Valor</th> <th>Hora</th> <th>Tipo</th> </tr> </tfoot></table>');
+    $('#contenido').append('<table id="grdMediciones" class="table table-bordered table-hover table-striped table-sm"> <thead> <tr> <th>Nro. Medición</th> <th>Valor</th> <th>Hora</th> <th>Tipo</th> </tr> </thead></table>');
 
     grdMediciones = $('#grdMediciones').DataTable({
         "aoColumnDefs": [{
@@ -30,6 +34,9 @@ function VerTabla() {
             {
                 "data": "valor",
                 "mRender": function (data, type, row) {
+                    if (row.idTipoMedicion == 3) {
+                        return row.valor + ' %';
+                    }
                     return row.valor + ' °C';
                 }
             },
@@ -43,10 +50,11 @@ function VerTabla() {
             {
                 "data": "idTipoMedicion",
                 "mRender": function (data, type, row) {
-                    if (row.idTipoMedicion == '2') {
+                    //console.log(row);
+                    if (row.idTipoMedicion == 2) {
                         return 'Sensacion Termica';
                     }
-                    if (row.idTipoMedicion == '3') {
+                    if (row.idTipoMedicion == 3) {
                         return 'Humedad';
                     }
                     return 'Temperatura';
@@ -57,7 +65,7 @@ function VerTabla() {
         "searching": false,
         "ordering": true,
         "paging": false,
-        "scrollY": "200px",
+        "scrollY": "300px",
         "language": {
             "decimal": "",
             "emptyTable": "No hay información disponible para mostrar",
@@ -81,6 +89,8 @@ function VerTabla() {
     });
 
     CargarTabla();
+    CargarTablaST();
+    CargarTablaH();
 }
 
 function CargarTabla() {
@@ -104,13 +114,59 @@ function CargarTabla() {
     });
 }
 
+function CargarTablaST() {
+    var request = $.ajax({
+        url: baseURL + "Medicion/GetUltimaMedicionTablaST",
+        type: 'GET',
+        contentType: 'application/json; charset=utf-8'
+    });
+
+
+    request.done(function (data) {
+        //console.log(data.Response);
+        //grdMediciones.clear();
+        grdMediciones.row.add(data.Response);
+        grdMediciones.draw();
+        tablaTimeOut = setTimeout(CargarTablaST, DELAY);
+    });
+
+    request.fail(function (data) {
+        console.log(data.Response);
+    });
+}
+
+function CargarTablaH() {
+    var request = $.ajax({
+        url: baseURL + "Medicion/GetUltimaMedicionTablaH",
+        type: 'GET',
+        contentType: 'application/json; charset=utf-8'
+    });
+
+
+    request.done(function (data) {
+        //console.log(data.Response);
+        //grdMediciones.clear();
+        grdMediciones.row.add(data.Response);
+        grdMediciones.draw();
+        tablaTimeOut = setTimeout(CargarTablaH, DELAY);
+    });
+
+    request.fail(function (data) {
+        console.log(data.Response);
+    });
+}
 var dps = [];
 var dataLength = 50; // number of dataPoints visible at any point
 
 
+
 function VerGrafico() {
 
+    $('#pnlGrafico').addClass('active');
+    $('#pnlTabla').removeClass('active');
+
     $('#contenido').empty();
+    clearTimeout(puntosTimeOut);
     clearTimeout(tablaTimeOut);
 
     $('#contenido').attr('style', 'height: 400px; max-width: 1100px; margin: 0px auto;');
@@ -127,20 +183,10 @@ function VerGrafico() {
                 label: 'Temperatura',
                 data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
+                    'rgba(192,170,189,0.2)'                    
                 ],
                 borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
+                    'rgba(192,170,189,1)'                    
                 ],
                 borderWidth: 2
             }]
@@ -152,8 +198,9 @@ function VerGrafico() {
                         beginAtZero: true
                     },
                     scaleLabel: {
+                        //fontColor: "white",
                         display: true,
-                        labelString: '°C'
+                        labelString: 'Temperatura (°C)'
                     }
                 }],
                 xAxes: [{
@@ -161,8 +208,9 @@ function VerGrafico() {
                         beginAtZero: true
                     },
                     scaleLabel: {
+                        //fontColor: "white",
                         display: true,
-                        labelString: 'Hora'
+                        labelString: 'Tiempo (hs)'
                     }
                 }]
             }
@@ -174,7 +222,7 @@ function VerGrafico() {
 
 function cargarPuntos() {
 
-    var baseURL = window.location.protocol + "//" + window.location.host + "/";
+    //var baseURL = window.location.protocol + "//" + window.location.host + "/";
     //console.log(baseURL);
     var req = $.ajax({
         url: baseURL + 'Medicion/GetUltimaMedicion',

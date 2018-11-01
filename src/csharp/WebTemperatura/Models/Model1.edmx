@@ -129,7 +129,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="medicionesEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="medicionesEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="informe" EntityType="Self.informe" />
           <EntitySet Name="medicion" EntityType="Self.medicion" />
           <EntitySet Name="tipomedicion" EntityType="Self.tipomedicion" />
@@ -147,7 +147,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="medicionesModelStoreContainer" CdmEntityContainer="medicionesEntities">
+        <EntityContainerMapping StorageEntityContainer="medicionesModelStoreContainer" CdmEntityContainer="medicionesEntities1">
           <EntitySetMapping Name="informe">
             <EntityTypeMapping TypeName="medicionesModel.informe">
               <MappingFragment StoreEntitySet="informe">

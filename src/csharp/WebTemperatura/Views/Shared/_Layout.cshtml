@@ -4,49 +4,41 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación</title>
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon" />
+    <title>Arduino</title>
+
+    <link rel="stylesheet" href="~/Content/global.css" />
 
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
     <script src="~/Scripts/bootstrap.min.js"></script>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
     <script src="~/Scripts/jquery.dataTables.min.js"></script>
     <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
-    @*<link rel="stylesheet" media="screen" href="~/Scripts/particlesjs/css/style.css">*@
-    @*<link rel="stylesheet" href="~/Content/style.css" />*@
     <link href="~/Content/Datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
     <script src="~/Scripts/Chart.min.js"></script>
-    
-    @*<div id="particles-js"></div>
 
+    @*<div id="particles-js"></div>*@
 
-        <script src="~/Scripts/particlesjs/js/particles.js"></script>
-        <script src="~/Scripts/particlesjs/js/app.js"></script>*@
-
+    <link rel="stylesheet" media="screen" href="~/Scripts/particlesjs/css/style.css">
 
 </head>
 <body>
-
+    <div id="particles-js"></div>
     <div class="container body-content">
-                @RenderBody()
-    </div> 
-    @*<script>
-            var count_particles, stats, update;
-            stats = new Stats;
-            stats.setMode(0);
-            stats.domElement.style.position = 'absolute';
-            stats.domElement.style.left = '0px';
-            stats.domElement.style.top = '0px';
-            document.body.appendChild(stats.domElement);
-            count_particles = document.querySelector('.js-count-particles');
-            update = function () {
-                stats.begin();
-                stats.end();
-                if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
-                    count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
-                }
-                requestAnimationFrame(update);
-            };
-            requestAnimationFrame(update);
-        </script>*@
+        @RenderBody()
+    </div>
+
+
+
+    <script src="~/Scripts/particlesjs/js/particles.min.js"></script>
+    <script type="text/javascript">
+        particlesJS.load('particles-js', 'Scripts/particlesjs/particles.json', function () {
+            //console.log('callback - particles.js config loaded');
+        });
+    </script>
+    <script src="~/Scripts/particlesjs/js/app.js"></script>
 </body>
 </html>
