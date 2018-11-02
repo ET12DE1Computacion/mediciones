@@ -30,7 +30,7 @@ namespace WebTemperatura.Controllers
         {
             medicionesEntities1 context = new medicionesEntities1();
             context.Configuration.ProxyCreationEnabled = false;
-            var med = context.medicion.Where(x => x.fechaHora > DateTime.Now && x.idTipoMedicion == 1).OrderBy(x => x.fechaHora).First();
+            var med = context.medicion.Where(x => x.fechaHora > DateTime.Now && x.idTipoMedicion == 3).OrderBy(x => x.fechaHora).First();
             return Json(new { Response = med }, JsonRequestBehavior.AllowGet);
         }
 

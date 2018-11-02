@@ -180,7 +180,7 @@ function VerGrafico() {
         data: {
             labels: ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0"],
             datasets: [{
-                label: 'Temperatura',
+                label: 'Mediciones',
                 data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 backgroundColor: [
                     'rgba(192,170,189,0.2)'                    
@@ -200,7 +200,7 @@ function VerGrafico() {
                     scaleLabel: {
                         //fontColor: "white",
                         display: true,
-                        labelString: 'Temperatura (°C)'
+                        labelString: 'Humedad (%)'
                     }
                 }],
                 xAxes: [{
