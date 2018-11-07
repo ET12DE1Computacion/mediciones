@@ -19,10 +19,22 @@ namespace VisorConsola
             PlacaSensora placa = new Serial(9600, "COM5");
             placa.NombrePlaca = "Arduino Uno - DHT11";
 
-            PlacaSensora placa2 = new PlacaSimulada{
+            PlacaSensora placa2 = new PlacaSimulada
+            {
                 NombrePlaca = "Simulada",
                 Delay = 2500
             };
+
+            PlacaSensora placa3 = new PlacaSimulada{
+                NombrePlaca = "Simulada1",
+                Delay = 1300
+            };
+
+            PlacaSensora placa4 = new PlacaSimulada{
+                    NombrePlaca = "Simulada2",
+                    Delay = 7500
+            };
+            
             FormateadorJson formateador = new FormateadorJson();
 
             DAOMySQL dao = new DAOMySQL("server=localhost;database=mediciones;uid=mediciones;pwd=mediciones;");
