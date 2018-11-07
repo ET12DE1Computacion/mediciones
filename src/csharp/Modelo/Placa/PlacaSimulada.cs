@@ -4,7 +4,7 @@ namespace Modelo.Placa
 {
     public class PlacaSimulada: PlacaSensora
     {
-        const string stringJson = @"[{""n"":""humedad"",""v"":66},{""n"":""temperatura"",""v"":22},{""n"":""sensacionTermica"",""v"":21.97867}]";
+        const string stringJson = @"[{""n"":""Humedad"",""v"":66},{""n"":""Temperatura"",""v"":22},{""n"":""Sensacion Terminca"",""v"":21.97867}]";
         /// <summary>
         /// Propiedad que representa el tiempo en milisegundos que tarda en generar la lectura
         /// </summary>

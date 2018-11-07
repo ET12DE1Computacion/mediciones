@@ -30,7 +30,8 @@ namespace VisorConsola
             Logica logica = new Logica(dao);
             logica.Visor = visor;
             logica.Formateador = formateador;
-            logica.Placa = placa;
+           //( logica.AgregarPlaca(placa);
+            logica.AgregarPlaca(placa2);
             while (true) ;
         }
     }

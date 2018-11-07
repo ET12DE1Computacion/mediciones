@@ -17,7 +17,7 @@ namespace Modelo
         }
         public Formateador Formateador { get; set; }
         public Dictionary<string,TipoMedicion> TiposMediciones { get; set; }
-        private PlacaSensora placa;
+        private List<PlacaSensora> placas = new List<PlacaSensora>();
         public IDisplay Visor
         {
             get { return visor; }
@@ -73,18 +73,16 @@ namespace Modelo
                 debug(e.Message);
             }
         }      
-
-        public PlacaSensora Placa
+        public void EliminarPlaca( PlacaSensora unaPlaca)
         {
-            get { return placa; }
-            set
-            {
-                debug("Entre al setter");
-                placa = value;
-                placa.Logica = this;
-                placa.iniciarLecturaAsincronica();
-                debug("sali del setter");
-            }
+            placas.Remove(unaPlaca);
+        }
+        public void AgregarPlaca(PlacaSensora unaPlaca)
+        {
+            placas.Add(unaPlaca);
+            unaPlaca.Logica = this;
+            unaPlaca.iniciarLecturaAsincronica();
+            debug("sali del setter");
         }
 
         public void debug(string debug)
