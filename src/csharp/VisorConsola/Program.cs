@@ -27,6 +27,8 @@ namespace VisorConsola
 
             DAOMySQL dao = new DAOMySQL("server=localhost;database=mediciones;uid=mediciones;pwd=mediciones;");
 
+
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
             Logica logica = new Logica(dao);
             logica.Visor = visor;
             logica.Formateador = formateador;
@@ -40,12 +42,28 @@ namespace VisorConsola
 
         public void imprimirMediciones(List<Medicion> mediciones)
         {
-            mediciones.ForEach(m => Console.WriteLine(m));
-            Console.WriteLine();
+            imprimirLinea();
+            mediciones.ForEach(m => imprimirMedicion(m);
+            imprimirLinea();
         }
         public void debug(string debug)
         {
             Console.WriteLine(debug);
+        }
+
+        private void imprimirMedicion(Medicion m)
+        {
+            string cad = $"{m.TipoMedicion} = {m.Valor}\t{m.FechaHora.ToString()}";
+            Console.WriteLine(cad);
+        }
+
+        private void imprimirLinea()
+        {
+            for (int i = 0; i < Console.WindowWidth; i++)
+            {
+                Console.Write('-');
+            }
+            Console.WriteLine();
         }
     }
 }
