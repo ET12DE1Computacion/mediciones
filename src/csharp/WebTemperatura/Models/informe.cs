@@ -12,7 +12,7 @@ namespace WebTemperatura.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class informe
+    public partial class Informe
     {
         public int idInforme { get; set; }
         public byte idTipoMedicion { get; set; }
@@ -21,6 +21,6 @@ namespace WebTemperatura.Models
         public float maximo { get; set; }
         public Nullable<float> promedio { get; set; }
     
-        public virtual tipomedicion tipomedicion { get; set; }
+        public virtual TipoMedicion TipoMedicion { get; set; }
     }
 }

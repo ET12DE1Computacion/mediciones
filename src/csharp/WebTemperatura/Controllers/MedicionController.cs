@@ -28,36 +28,56 @@ namespace WebTemperatura.Controllers
         [HttpGet]
         public JsonResult GetUltimaMedicion()
         {
-            medicionesEntities1 context = new medicionesEntities1();
-            context.Configuration.ProxyCreationEnabled = false;
-            var med = context.medicion.Where(x => x.fechaHora > DateTime.Now && x.idTipoMedicion == 3).OrderBy(x => x.fechaHora).First();
+            Medicion med; 
+
+            using (var context = new medicionesEntities())
+            {
+                context.Configuration.ProxyCreationEnabled = false;
+                DateTime fechaReferencia = DateTime.Now.AddSeconds(-10);
+                med = context.Medicion.FirstOrDefault(x => x.fechaHora > fechaReferencia && x.idTipoMedicion == 3);
+            }
+
             return Json(new { Response = med }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public JsonResult GetUltimaMedicionTabla()
         {
-            medicionesEntities1 context = new medicionesEntities1();
-            context.Configuration.ProxyCreationEnabled = false;
-            var med = context.medicion.Where(x => x.fechaHora > DateTime.Now && x.idTipoMedicion == 1).OrderBy(x => x.fechaHora).First();
+            Medicion med;
+            using (var context = new medicionesEntities())
+            {
+                context.Configuration.ProxyCreationEnabled = false;
+                DateTime fechaReferencia = DateTime.Now.AddSeconds(-10);
+                med = context.Medicion.FirstOrDefault(x => x.fechaHora > fechaReferencia && x.idTipoMedicion == 1);
+            }
             return Json(new { Response = med }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public JsonResult GetUltimaMedicionTablaST()
         {
-            medicionesEntities1 context = new medicionesEntities1();
-            context.Configuration.ProxyCreationEnabled = false;
-            var med = context.medicion.Where(x => x.fechaHora > DateTime.Now && x.idTipoMedicion == 2).OrderBy(x => x.fechaHora).First();
+            Medicion med;
+
+            using (var context = new medicionesEntities())
+            {
+                context.Configuration.ProxyCreationEnabled = false;
+                DateTime fechaReferencia = DateTime.Now.AddSeconds(-10);
+                med = context.Medicion.FirstOrDefault(x => x.fechaHora > fechaReferencia && x.idTipoMedicion == 4);
+            }
+
             return Json(new { Response = med }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public JsonResult GetUltimaMedicionTablaH()
         {
-            medicionesEntities1 context = new medicionesEntities1();
-            context.Configuration.ProxyCreationEnabled = false;
-            var med = context.medicion.Where(x => x.fechaHora > DateTime.Now && x.idTipoMedicion == 3).OrderBy(x => x.fechaHora).First();
+            Medicion med;
+            using (var context = new medicionesEntities())
+            {
+                context.Configuration.ProxyCreationEnabled = false;
+                DateTime fechaReferencia = DateTime.Now.AddSeconds(-10);
+                med = context.Medicion.FirstOrDefault(x => x.fechaHora > fechaReferencia && x.idTipoMedicion == 3);
+            }
             return Json(new { Response = med }, JsonRequestBehavior.AllowGet);
         }
 

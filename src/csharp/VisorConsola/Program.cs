@@ -16,8 +16,8 @@ namespace VisorConsola
         {
             VisorConsola visor = new VisorConsola();
 
-            PlacaSensora placa = new Serial(9600, "COM5");
-            placa.NombrePlaca = "Arduino Uno - DHT11";
+            PlacaSensora placaFisica = new Serial(9600, "COM3");
+            placaFisica.NombrePlaca = "Arduino Uno - DHT11";
 
             PlacaSensora placa2 = new PlacaSimulada{
                 NombrePlaca = "Simulada",
@@ -25,14 +25,14 @@ namespace VisorConsola
             };
             FormateadorJson formateador = new FormateadorJson();
 
-            DAOMySQL dao = new DAOMySQL("server=localhost;database=mediciones;uid=mediciones;pwd=mediciones;");
+            DAOMySQL dao = new DAOMySQL("server=localhost;database=mediciones;uid=root;pwd=admin;");
 
 
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Logica logica = new Logica(dao);
             logica.Visor = visor;
             logica.Formateador = formateador;
-            logica.Placa = placa;
+            logica.Placa = placaFisica;
             while (true) ;
         }
     }

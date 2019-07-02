@@ -12,13 +12,13 @@ namespace WebTemperatura.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class medicion
+    public partial class Medicion
     {
         public long idMedicion { get; set; }
         public byte idTipoMedicion { get; set; }
         public float valor { get; set; }
         public System.DateTime fechaHora { get; set; }
     
-        public virtual tipomedicion tipomedicion { get; set; }
+        public virtual TipoMedicion TipoMedicion { get; set; }
     }
 }
