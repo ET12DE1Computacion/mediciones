@@ -13,10 +13,10 @@ namespace WebTemperatura.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class medicionesEntities1 : DbContext
+    public partial class medicionesEntities : DbContext
     {
-        public medicionesEntities1()
-            : base("name=medicionesEntities1")
+        public medicionesEntities()
+            : base("name=medicionesEntities")
         {
         }
     
@@ -25,8 +25,8 @@ namespace WebTemperatura.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<informe> informe { get; set; }
-        public DbSet<medicion> medicion { get; set; }
-        public DbSet<tipomedicion> tipomedicion { get; set; }
+        public DbSet<Informe> Informe { get; set; }
+        public DbSet<Medicion> Medicion { get; set; }
+        public DbSet<TipoMedicion> TipoMedicion { get; set; }
     }
 }

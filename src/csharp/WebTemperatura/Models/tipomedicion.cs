@@ -12,18 +12,18 @@ namespace WebTemperatura.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tipomedicion
+    public partial class TipoMedicion
     {
-        public tipomedicion()
+        public TipoMedicion()
         {
-            this.informe = new HashSet<informe>();
-            this.medicion = new HashSet<medicion>();
+            this.Informe = new HashSet<Informe>();
+            this.Medicion = new HashSet<Medicion>();
         }
     
         public byte idTipoMedicion { get; set; }
         public string tipoMedicion1 { get; set; }
     
-        public virtual ICollection<informe> informe { get; set; }
-        public virtual ICollection<medicion> medicion { get; set; }
+        public virtual ICollection<Informe> Informe { get; set; }
+        public virtual ICollection<Medicion> Medicion { get; set; }
     }
 }

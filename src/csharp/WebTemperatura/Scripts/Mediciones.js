@@ -1,4 +1,4 @@
-﻿var baseURL = window.location.protocol + "//" + window.location.host + "/" + location.pathname.split('/')[1] + "/";
+﻿var baseURL = window.location.protocol + "//" + window.location.host + "/"; // + location.pathname.split('/')[1] + "/";
 var grdMediciones;
 var chartMediciones;
 var DELAY = 1000;
@@ -51,8 +51,8 @@ function VerTabla() {
                 "data": "idTipoMedicion",
                 "mRender": function (data, type, row) {
                     //console.log(row);
-                    if (row.idTipoMedicion == 2) {
-                        return 'Sensacion Termica';
+                    if (row.idTipoMedicion == 2 || row.idTipoMedicion == 4) {
+                        return 'Sensacion Térmica';
                     }
                     if (row.idTipoMedicion == 3) {
                         return 'Humedad';
@@ -123,7 +123,7 @@ function CargarTablaST() {
 
 
     request.done(function (data) {
-        //console.log(data.Response);
+        console.log(data.Response);
         //grdMediciones.clear();
         grdMediciones.row.add(data.Response);
         grdMediciones.draw();

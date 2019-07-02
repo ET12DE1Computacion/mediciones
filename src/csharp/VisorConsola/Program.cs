@@ -16,8 +16,8 @@ namespace VisorConsola
         {
             VisorConsola visor = new VisorConsola();
 
-            PlacaSensora placa = new Serial(9600, "COM5");
-            placa.NombrePlaca = "Arduino Uno - DHT11";
+            PlacaSensora placaFisica = new Serial(9600, "COM3");
+            placaFisica.NombrePlaca = "Arduino Uno - DHT11";
 
             PlacaSensora placa2 = new PlacaSimulada{
                 NombrePlaca = "Simulada",
@@ -25,14 +25,14 @@ namespace VisorConsola
             };
             FormateadorJson formateador = new FormateadorJson();
 
-            DAOMySQL dao = new DAOMySQL("server=localhost;database=mediciones;uid=mediciones;pwd=mediciones;");
+            DAOMySQL dao = new DAOMySQL("server=localhost;database=mediciones;uid=root;pwd=admin;");
 
 
             Console.BackgroundColor = ConsoleColor.DarkGreen;
             Logica logica = new Logica(dao);
             logica.Visor = visor;
             logica.Formateador = formateador;
-            logica.Placa = placa;
+            logica.Placa = placaFisica;
             while (true) ;
         }
     }
@@ -43,7 +43,7 @@ namespace VisorConsola
         public void imprimirMediciones(List<Medicion> mediciones)
         {
             imprimirLinea();
-            mediciones.ForEach(m => imprimirMedicion(m);
+            mediciones.ForEach(m => imprimirMedicion(m));
             imprimirLinea();
         }
         public void debug(string debug)
@@ -53,7 +53,8 @@ namespace VisorConsola
 
         private void imprimirMedicion(Medicion m)
         {
-            string cad = $"{m.TipoMedicion} = {m.Valor}\t{m.FechaHora.ToString()}";
+            //string cad = $"{m.TipoMedicion.ToString()} = {m.Valor}\t{m.FechaHora.ToString()}";
+            string cad = string.Format("{0} = {1} \t {2}", m.TipoMedicion, m.FechaHora.ToString());
             Console.WriteLine(cad);
         }
 

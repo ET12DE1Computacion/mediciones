@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="63564ce900274844805ff33eb34367a8" Name="Diagram1">
-        <EntityTypeShape EntityType="medicionesModel.informe" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="medicionesModel.medicion" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="medicionesModel.tipomedicion" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+      <Diagram DiagramId="2aaf98bd32f84e9b9a5ae46eb64e7e60" Name="Diagram1">
+        <EntityTypeShape EntityType="medicionesModel.Informe" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="medicionesModel.Medicion" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="medicionesModel.TipoMedicion" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
         <AssociationConnector Association="medicionesModel.fk_Informe_TipoMedicion1" ManuallyRouted="false" />
         <AssociationConnector Association="medicionesModel.fk_Medicion_TipoMedicion" ManuallyRouted="false" />
       </Diagram>
