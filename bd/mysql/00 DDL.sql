@@ -73,7 +73,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 INSERT INTO TipoMedicion  (idTipoMedicion, tipoMedicion)
                   VALUES  (1, 'Temperatura'),
-                          (2, 'Sensacion Terminca'),
+                          (2, 'Sensacion Termica'),
                           (3, 'Humedad');
 
 CREATE USER IF NOT EXISTS `mediciones`@`%` IDENTIFIED BY 'mediciones';
