@@ -1,0 +1,291 @@
+﻿@{
+    ViewData["Title"] = "ET12";
+}
+<br />
+<div class="columns">
+    <div class="column">
+        <div class="card">
+            <div class="container is-fluid">
+                <div class="card-body">
+                    <div id="contenido"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <div class="column">
+        <ul class="steps is-small is-hollow">
+            <li class="steps-segment">
+                <span class="steps-marker"></span>
+                <div class="steps-content">
+                    <p class="is-size-4">Arduino</p>
+                    <p>Medir temperatura y humedad por sensor</p>
+                </div>
+            </li>
+            <li class="steps-segment">
+                <span class="steps-marker"></span>
+                <div class="steps-content">
+                    <p class="is-size-4">C#</p>
+                    <p>Recibir datos del sensor e interpretarlos</p>
+                </div>
+            </li>
+            <li class="steps-segment">
+                <span class="steps-marker"></span>
+                <div class="steps-content">
+                    <p class="is-size-4">MySQL</p>
+                    <p>Almacenar información de las mediciones</p>
+                </div>
+            </li>
+            <li class="steps-segment">
+                <span class="steps-marker"></span>
+                <div class="steps-content">
+                    <p class="is-size-4">Visor Consola</p>
+                    <p>Visualizar resultados en una terminal</p>
+                </div>
+            </li>
+        </ul>
+        <br />
+        <br />
+        <ul class="steps is-small is-hollow">
+            <li class="steps-segment">
+                <span class="steps-marker"></span>
+                <div class="steps-content">
+                    <p class="is-size-4">Arduino</p>
+                    <p>Medir temperatura y humedad por sensor</p>
+                </div>
+            </li>
+            <li class="steps-segment">
+                <span class="steps-marker"></span>
+                <div class="steps-content">
+                    <p class="is-size-4">C#</p>
+                    <p>Recibir datos del sensor e interpretarlos</p>
+                </div>
+            </li>
+            <li class="steps-segment">
+                <span class="steps-marker"></span>
+                <div class="steps-content">
+                    <p class="is-size-4">MySQL</p>
+                    <p>Almacenar información de las mediciones</p>
+                </div>
+            </li>
+            <li class="steps-segment">
+                <span class="steps-marker"></span>
+                <div class="steps-content">
+                    <p class="is-size-4">Visor Web</p>
+                    <p>Visualizar resultados en un navegador</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="columns">
+    <div class="column">
+        <div class="card">
+            <div class="card-body">
+                <canvas id="graficoTemperatura"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="column">
+        <div class="card">
+            <div class="card-body">
+                <canvas id="graficoSensacionTermica"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="column">
+        <div class="card">
+            <div class="card-body">
+                <canvas id="graficoHumedad"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        cargarTemperatura();
+        cargarSensacionTermica();
+        cargarHumedad();
+    });
+
+    var chartT = document.getElementById("graficoTemperatura").getContext('2d');
+    var chartST = document.getElementById("graficoSensacionTermica").getContext('2d');
+    var chartH = document.getElementById("graficoHumedad").getContext('2d');
+
+    var graficoTemperatura = new Chart(chartT, {
+        type: 'line',
+        data: {
+            labels: ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0"],
+            datasets: [{
+                label: 'Temperatura (°C)',
+                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    var graficoSensacionTermica = new Chart(chartST, {
+        type: 'line',
+        data: {
+            labels: ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0"],
+            datasets: [{
+                label: 'Sensación Térmica (°C)',
+                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    var graficoHumedad = new Chart(chartH, {
+        type: 'line',
+        data: {
+            labels: ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0"],
+            datasets: [{
+                label: 'Humedad (%)',
+                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    function cargarTemperatura() {
+
+        var baseURL = window.location.protocol + "//" + window.location.host + "/";
+        //console.log(baseURL);
+        var req = $.ajax({
+            url: baseURL + 'Medicion/GetUltimaMedicionTemperatura',
+            type: 'GET',
+            contentType: 'application/json; context=utf-8'
+        });
+
+        req.done(function (data) {
+            graficoTemperatura.data.labels.shift();
+            graficoTemperatura.data.datasets[0].data.shift();
+            var value = new Date(data.fechaHora);
+            graficoTemperatura.data.labels.push(value.toLocaleTimeString());
+            graficoTemperatura.data.datasets[0].data.push(data.valor);
+            graficoTemperatura.update();
+            setTimeout(cargarTemperatura, 1000);
+        });
+    }
+
+    function cargarSensacionTermica() {
+
+        var baseURL = window.location.protocol + "//" + window.location.host + "/";
+        var req = $.ajax({
+            url: baseURL + 'Medicion/GetUltimaMedicionSensacionTermica',
+            type: 'GET',
+            contentType: 'application/json; context=utf-8'
+        });
+
+        req.done(function (data) {
+            graficoSensacionTermica.data.labels.shift();
+            graficoSensacionTermica.data.datasets[0].data.shift();
+            var value = new Date(data.fechaHora);
+            graficoSensacionTermica.data.labels.push(value.toLocaleTimeString());
+            graficoSensacionTermica.data.datasets[0].data.push(data.valor);
+            graficoSensacionTermica.update();
+            setTimeout(cargarSensacionTermica, 1000);
+        });
+    }
+
+    function cargarHumedad() {
+
+        var baseURL = window.location.protocol + "//" + window.location.host + "/";
+        var req = $.ajax({
+            url: baseURL + 'Medicion/GetUltimaMedicionHumedad',
+            type: 'GET',
+            contentType: 'application/json; context=utf-8'
+        });
+
+        req.done(function (data) {
+            graficoHumedad.data.labels.shift();
+            graficoHumedad.data.datasets[0].data.shift();
+            var value = new Date(data.fechaHora);
+            graficoHumedad.data.labels.push(value.toLocaleTimeString());
+            graficoHumedad.data.datasets[0].data.push(data.valor);
+            graficoHumedad.update();
+            setTimeout(cargarHumedad, 1000);
+        });
+    }
+
+</script>
+
+<script src="~/js/Mediciones.js"></script>
