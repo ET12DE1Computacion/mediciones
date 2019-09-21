@@ -7,6 +7,7 @@ using Modelo.Placa;
 using Modelo.Formateadores;
 using Modelo;
 using DAO;
+using System.Configuration;
 
 namespace VisorConsola
 {
@@ -16,7 +17,7 @@ namespace VisorConsola
         {
             VisorConsola visor = new VisorConsola();
 
-            PlacaSensora placaFisica = new Serial(9600, "COM3");
+            PlacaSensora placaFisica = new Serial(9600, "COM7");
             placaFisica.NombrePlaca = "Arduino Uno - DHT11";
 
             PlacaSensora placa2 = new PlacaSimulada{
@@ -25,7 +26,14 @@ namespace VisorConsola
             };
             FormateadorJson formateador = new FormateadorJson();
 
-            DAOMySQL dao = new DAOMySQL("server=localhost;database=mediciones;uid=root;pwd=admin;");
+            var connectionString = string.Format("server={0};database={1};uid={2};pwd={3};",
+                ConfigurationManager.AppSettings["server"], 
+                ConfigurationManager.AppSettings["database"], 
+                ConfigurationManager.AppSettings["user"], 
+                ConfigurationManager.AppSettings["password"]);
+
+            //DAOMySQL dao = new DAOMySQL("server=localhost;database=mediciones;uid=root;pwd=telesca1234;");
+            DAOMySQL dao = new DAOMySQL(connectionString);
 
 
             Console.ForegroundColor = ConsoleColor.DarkGreen;
