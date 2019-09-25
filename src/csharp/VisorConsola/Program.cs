@@ -17,7 +17,7 @@ namespace VisorConsola
         {
             VisorConsola visor = new VisorConsola();
 
-            PlacaSensora placaFisica = new Serial(9600, "COM7");
+            PlacaSensora placaFisica = new Serial(9600, "COM3");
             placaFisica.NombrePlaca = "Arduino Uno - DHT11";
 
             PlacaSensora placa2 = new PlacaSimulada{
@@ -32,16 +32,21 @@ namespace VisorConsola
                 ConfigurationManager.AppSettings["user"], 
                 ConfigurationManager.AppSettings["password"]);
 
-            //DAOMySQL dao = new DAOMySQL("server=localhost;database=mediciones;uid=root;pwd=telesca1234;");
-            DAOMySQL dao = new DAOMySQL(connectionString);
-
-
-            Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Logica logica = new Logica(dao);
-            logica.Visor = visor;
-            logica.Formateador = formateador;
-            logica.Placa = placaFisica;
-            while (true) ;
+            try
+            {
+                //DAOMySQL dao = new DAOMySQL("server=localhost;database=mediciones;uid=root;pwd=telesca1234;");
+                DAOMySQL dao = new DAOMySQL(connectionString);
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Logica logica = new Logica(dao);
+                logica.Visor = visor;
+                logica.Formateador = formateador;
+                logica.Placa = placaFisica;
+                while (true) ;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Hubo un error: {0}", e.Message);
+            }
         }
     }
 
